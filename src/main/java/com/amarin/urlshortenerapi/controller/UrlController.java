@@ -11,29 +11,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@RestController
-@RequestMapping("/api/v1")
 public class UrlController {
 
-    private final UrlService urlService;
 
-    public UrlController(UrlService urlService) {
-        this.urlService = urlService;
+    public UrlController() {
+
     }
 
-    @ApiOperation(value = "Convert new url", notes = "Converts long url to short url")
-    @PostMapping("create-short")
-    public String convertToShortUrl(@RequestBody UrlLongRequest request) {
-        return urlService.convertToShortUrl(request);
+    public void convertToShortUrl() {
+        return ;
     }
 
-    @ApiOperation(value = "Redirect", notes = "Finds original url from short url and redirects")
-    @GetMapping(value = "{shortUrl}")
-    @Cacheable(value = "urls", key = "#shortUrl", sync = true)
-    public ResponseEntity<Void> getAndRedirect(@PathVariable String shortUrl) {
-        var url = urlService.getOriginalUrl(shortUrl);
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .location(URI.create(url))
-                .build();
+    public void getAndRedirect() {
+        return ;
     }
 }
