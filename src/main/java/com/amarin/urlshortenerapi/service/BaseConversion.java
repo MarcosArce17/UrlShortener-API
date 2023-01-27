@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class BaseConversion {
 
-    private static final String allowedString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private char[] allowedCharacters = allowedString.toCharArray();
-    private int base = allowedCharacters.length;
+    private static final String ALLOWED_STRING = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final char[] allowedCharacters = ALLOWED_STRING.toCharArray();
+    private static final int BASE = allowedCharacters.length;
 
     public String encode(long input){
         var encodedString = new StringBuilder();
@@ -17,8 +17,8 @@ public class BaseConversion {
         }
 
         while (input > 0) {
-            encodedString.append(allowedCharacters[(int) (input % base)]);
-            input = input / base;
+            encodedString.append(allowedCharacters[(int) (input % BASE)]);
+            input = input / BASE;
         }
 
         return encodedString.reverse().toString();
@@ -32,8 +32,8 @@ public class BaseConversion {
 
         //counter is used to avoid reversing input string
         var counter = 1;
-        for (int i = 0; i < length; i++) {
-            decoded += allowedString.indexOf(characters[i]) * Math.pow(base, length - counter);
+        for (char character : characters) {
+            decoded += ALLOWED_STRING.indexOf(character) * Math.pow(BASE, length - counter);
             counter++;
         }
         return decoded;
