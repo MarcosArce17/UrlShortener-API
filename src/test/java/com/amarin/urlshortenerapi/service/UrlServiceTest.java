@@ -18,42 +18,42 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class UrlServiceTest {
 
-    @Mock
-    UrlRepository mockUrlRepository;
+  @Mock
+  UrlRepository mockUrlRepository;
 
-    @Mock
-    BaseConversion mockBaseConversion;
+  @Mock
+  BaseConversion mockBaseConversion;
 
-    @InjectMocks
-    UrlService urlService;
+  @InjectMocks
+  UrlService urlService;
 
-    @Test
-    public void convertToShortUrlTest() {
-        var url = new Url();
-        url.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
-        url.setCreatedDate(new Date());
-        url.setId(5);
+  @Test
+  public void convertToShortUrlTest() {
+    var url = new Url();
+    url.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
+    url.setCreatedDate(new Date());
+    url.setId(5);
 
-        when(mockUrlRepository.save(any(Url.class))).thenReturn(url);
-        when(mockBaseConversion.encode(url.getId())).thenReturn("f");
+    when(mockUrlRepository.save(any(Url.class))).thenReturn(url);
+    when(mockBaseConversion.encode(url.getId())).thenReturn("f");
 
-        var urlRequest = new UrlLongRequest();
-        urlRequest.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
+    var urlRequest = new UrlLongRequest();
+    urlRequest.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
 
-        assertEquals("f", urlService.convertToShortUrl(urlRequest));
-    }
+    assertEquals("f", urlService.convertToShortUrl(urlRequest));
+  }
 
-    @Test
-    public void getOriginalUrlTest() {
-        when(mockBaseConversion.decode("h")).thenReturn((long) 7);
+  @Test
+  public void getOriginalUrlTest() {
+    when(mockBaseConversion.decode("h")).thenReturn((long) 7);
 
-        var url = new Url();
-        url.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
-        url.setCreatedDate(new Date());
-        url.setId(7);
+    var url = new Url();
+    url.setLongUrl("https://github.com/AnteMarin/UrlShortener-API");
+    url.setCreatedDate(new Date());
+    url.setId(7);
 
-        when(mockUrlRepository.findById((long) 7)).thenReturn(java.util.Optional.of(url));
-        assertEquals("https://github.com/AnteMarin/UrlShortener-API", urlService.getOriginalUrl("h"));
+    when(mockUrlRepository.findById((long) 7)).thenReturn(java.util.Optional.of(url));
+    assertEquals("https://github.com/AnteMarin/UrlShortener-API", urlService.getOriginalUrl("h"));
 
-    }
+  }
 }
