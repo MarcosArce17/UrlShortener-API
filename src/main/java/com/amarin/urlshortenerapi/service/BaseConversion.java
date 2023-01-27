@@ -1,6 +1,5 @@
 package com.amarin.urlshortenerapi.service;
 
-import org.springframework.stereotype.Service;
 
 public class BaseConversion {
 

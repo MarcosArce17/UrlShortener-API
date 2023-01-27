@@ -7,8 +7,5 @@ import java.util.Date;
 
 public class UrlLongRequest {
 
-    private String longUrl;
-
-    private Date expiresDate;
 
 }

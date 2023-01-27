@@ -19,20 +19,10 @@ public class UrlServiceTest {
 
 
     public void convertToShortUrlTest() {
-        var url = new Url();
-        url.setLongUrl("https://github.com/Example/UrlShortener-API");
-        url.setCreatedDate(new Date());
-        url.setId(5);
 
     }
 
     public void getOriginalUrlTest() {
-
-        var url = new Url();
-        url.setLongUrl("https://github.com/Example/UrlShortener-API");
-        url.setCreatedDate(new Date());
-        url.setId(7);
-
 
     }
 }

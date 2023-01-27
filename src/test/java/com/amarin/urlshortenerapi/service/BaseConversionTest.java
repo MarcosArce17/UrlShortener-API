@@ -9,17 +9,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class BaseConversionTest {
 
 
-    @Test
     public void encode_lessThan62() {
 
     }
 
-    @Test
     public void encode_moreThan62() {
 
     }
 
-    @Test
     public void decode_singleCharacter() {
 
     }
